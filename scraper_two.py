@@ -14,15 +14,16 @@ table = soup.find("table", class_="W(100%) M(0)")
 if table:
     rows = table.find_all("tr")[1:]  # Skip header row
 
-    # Printing the header
+    # Display header
     print(f"{'Date':<15} {'Close Price':<10}")
     print("-" * 30)
-    # Iterating over rows
+    
+    # Iterate and print rows
     for row in rows:
         columns = row.find_all("td")
-        if len(columns) >= 5:  # Ensure row has enough columns for date and close price
+        if len(columns) >= 5:  # Check for date and close price columns
             date = columns[0].text.strip()
             close_price = columns[4].text.strip()
             print(f"{date:<15} {close_price:<10}")
 else:
-    print("Table not found or page structure may have changed.")
+    print("Table not found. Page structure may have changed.")
