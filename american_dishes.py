@@ -5,8 +5,13 @@ from bs4 import BeautifulSoup
 # URL to scrape for American dishes popularity
 url = "https://today.yougov.com/ratings/consumer/popularity/american-dishes/all"
 
+# Set a user-agent header to avoid being blocked
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
+
 # Send a request to the website
-response = requests.get(url)
+response = requests.get(url, headers=headers)
 
 # Check if the request was successful
 if response.status_code == 200:
@@ -37,7 +42,5 @@ if response.status_code == 200:
         print("Could not find the dishes popularity table.")
 else:
     print(f"Failed to retrieve data: {response.status_code}")
-
-# Note: Make sure to comply with the website's terms of service.
 
 #https://today.yougov.com/ratings/consumer/popularity/american-dishes/all link I am scraping
