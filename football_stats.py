@@ -1,5 +1,3 @@
-# football_stats.py
-import unittest
 import requests
 from bs4 import BeautifulSoup
 
@@ -26,4 +24,3 @@ if __name__ == "__main__":
     results = parse_football_stats()
     for player in results:
         print(f"Player: {player['name']}, Position: {player['position']}, Team: {player['team']}, Touchdowns: {player['touchdowns']}")
-    unittest.main()
