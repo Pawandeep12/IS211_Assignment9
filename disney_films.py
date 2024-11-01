@@ -1,38 +1,36 @@
-# disney_films.py
-# Link that Im scraping: https://en.wikipedia.org/wiki/List_of_Walt_Disney_Animation_Studios_films
 import requests
 from bs4 import BeautifulSoup
 
-# URL to scrape for Disney theatrical animated feature films
+#THE LINK I AM SCRAPING 
 url = "https://en.wikipedia.org/wiki/List_of_Walt_Disney_Animation_Studios_films"
 
-# Set a user-agent header to avoid being blocked
+
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 }
 
-# Send a request to the website
+
 response = requests.get(url, headers=headers)
 
-# Check if the request was successful
+
 if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find the table containing the films
+   
     table = soup.find('table', class_='wikitable')
 
-    # Check if the table was found
+    
     if table:
         films = []
-        for row in table.find_all('tr')[1:]:  # Skip the header row
+        for row in table.find_all('tr')[1:]:  
             cols = row.find_all('td')
-            if len(cols) >= 3:  # Ensure there are enough columns
+            if len(cols) >= 3: 
                 title = cols[0].text.strip()
                 release_year = cols[1].text.strip()
                 director = cols[2].text.strip()
                 films.append({'Title': title, 'Release Year': release_year, 'Director': director})
 
-        # Output the film data
+      
         for film in films:
             print(f"Title: {film['Title']}, Release Year: {film['Release Year']}, Director: {film['Director']}")
     else:
