@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL to scrape for Disney theatrical animated feature films
-url = "https://en.wikipedia.org/w/index.php?title=List_of_Disney_theatrical_animated_feature_films&section=2&oldid=1254577488&action=edit"
+url = "https://en.wikipedia.org/wiki/List_of_Walt_Disney_Animation_Studios_films"
 
 # Set a user-agent header to avoid being blocked
 headers = {
