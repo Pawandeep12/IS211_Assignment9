@@ -8,7 +8,7 @@ date = yf.download("AAPL", start="2023-01-01", end="2023-12-31")
 
 #Display close prices and dates
 for date, row in data.ubterrows():
-  print(f"Date: {date.date()}, Close Price: {row['Close']")
+  print(f"Date: {date.date()}, Close Price: {row['Close']}")
 from bs4 import BeautifulSoup
 
 # URL to scrape for Apple stock data
