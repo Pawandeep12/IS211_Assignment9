@@ -30,3 +30,4 @@ for player in players:
     print(f"{player['Player']} ({player['Position']}, {player['Team']}): {player['Touchdowns']} TDs")
 
 # Note: Ensure that the website's structure hasn't changed as it may affect scraping.
+
