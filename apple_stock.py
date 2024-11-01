@@ -1,5 +1,3 @@
-# apple_stock.py
-import unittest
 import requests
 from bs4 import BeautifulSoup
 
@@ -25,5 +23,3 @@ if __name__ == "__main__":
     results = parse_apple_stock()
     for data in results:
         print(f"Date: {data['date']}, Close Price: {data['close_price']}")
-if __name__ == '__main__':
-    unittest.main()
