@@ -23,3 +23,4 @@ if __name__ == "__main__":
     results = parse_apple_stock()
     for data in results:
         print(f"Date: {data['date']}, Close Price: {data['close_price']}")
+ 
