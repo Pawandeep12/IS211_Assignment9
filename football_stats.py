@@ -8,10 +8,11 @@ def parse_football_stats():
 
     players = []
     for player in soup.select('table tbody tr')[:20]:  # Replace with actual selectors
-        name = player.select_one('.PlayerName').text.strip()
-        position = player.select_one('.Position').text.strip()
-        team = player.select_one('.TeamName').text.strip()
-        touchdowns = player.select_one('.Touchdowns').text.strip()
+        # Adjust these selectors to match the website's structure
+        name = player.select_one('.PlayerName').text.strip() if player.select_one('.PlayerName') else 'N/A'
+        position = player.select_one('.Position').text.strip() if player.select_one('.Position') else 'N/A'
+        team = player.select_one('.TeamName').text.strip() if player.select_one('.TeamName') else 'N/A'
+        touchdowns = player.select_one('.Touchdowns').text.strip() if player.select_one('.Touchdowns') else '0'
         players.append({
             "name": name,
             "position": position,
