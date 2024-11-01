@@ -1,9 +1,9 @@
-# american_dishes.py
+# disney_films.py
 import requests
 from bs4 import BeautifulSoup
 
-# URL to scrape for American dishes popularity
-url = "https://today.yougov.com/ratings/consumer/popularity/american-dishes/all"
+# URL to scrape for Disney theatrical animated feature films
+url = "https://en.wikipedia.org/w/index.php?title=List_of_Disney_theatrical_animated_feature_films&section=2&oldid=1254577488&action=edit"
 
 # Set a user-agent header to avoid being blocked
 headers = {
@@ -17,30 +17,27 @@ response = requests.get(url, headers=headers)
 if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find the table containing the popularity ratings
-    table = soup.find('table')
+    # Find the table containing the films
+    table = soup.find('table', class_='wikitable')
 
     # Check if the table was found
     if table:
-        # Extract dish data
-        dishes = []
+        films = []
         for row in table.find_all('tr')[1:]:  # Skip the header row
             cols = row.find_all('td')
-            if len(cols) > 0:
-                dish_data = {
-                    'Dish': cols[0].text.strip(),
-                    'Popularity': cols[1].text.strip(),
-                    'Sample Size': cols[2].text.strip(),
-                    'Last Updated': cols[3].text.strip()
-                }
-                dishes.append(dish_data)
+            if len(cols) >= 3:  # Ensure there are enough columns
+                title = cols[0].text.strip()
+                release_year = cols[1].text.strip()
+                director = cols[2].text.strip()
+                films.append({'Title': title, 'Release Year': release_year, 'Director': director})
 
-        # Output the dish popularity data
-        for dish in dishes:
-            print(f"{dish['Dish']} - Popularity: {dish['Popularity']}, Sample Size: {dish['Sample Size']}, Last Updated: {dish['Last Updated']}")
+        # Output the film data
+        for film in films:
+            print(f"Title: {film['Title']}, Release Year: {film['Release Year']}, Director: {film['Director']}")
     else:
-        print("Could not find the dishes popularity table.")
+        print("Could not find the Disney films table.")
 else:
     print(f"Failed to retrieve data: {response.status_code}")
 
-#https://today.yougov.com/ratings/consumer/popularity/american-dishes/all link I am scraping
+
+#https://en.wikipedia.org/w/index.php?title=List_of_Disney_theatrical_animated_feature_films&section=2&oldid=1254577488&action=edit--- link I am scraping
