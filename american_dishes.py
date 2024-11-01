@@ -39,3 +39,5 @@ else:
     print(f"Failed to retrieve data: {response.status_code}")
 
 # Note: Make sure to comply with the website's terms of service.
+
+#https://today.yougov.com/ratings/consumer/popularity/american-dishes/all link I am scraping
